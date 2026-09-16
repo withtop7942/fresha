@@ -1,64 +1,119 @@
+
 <html>
-                <head>
-                            <style>
-                                         body{
-                                                    background-color:pink;
-                                                 }
-                        #div1{
-                        	height:20%;
-                        	background-color:lightblue;
-				font-size:5em;
-				color:blue;
-				display:flex;
-				justify-content:center;
-				align-items:center;
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			html, body {
+				height: 100%;
+				margin: 0;
 			}
-  			#div2{
-                        	height:60%;
-                        	background-color:lightgreen;
-				text-align:center;
-
+			body {
+				background-color: pink;
 			}
-#div3{
-                        height:16%;
-                        background-color:lightblue;
-font-size:2em;
-color:blue;
-text-align:center;
-}
-			#txt1{
-			width:50%;
-			font-size:3em;
- 			background-color:red;
-			color:white;
-			text-align:center;
+			#div1 {
+				height: 10%;
+				background-color: lightgreen;
+				font-size: 3em;
+				color: green;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			#div2 {
+				height: 80%;
+				background-color: lightblue;
+				text-align: center;
+			}
+			#div3 {
+				height: 10%;
+				background-color: lightgreen;
+				font-size: 3em;
+				color: black;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			#lamp1 {
+				width: 30%;
+				height: 30%;
+				accent-color: red;
+			}
+			#txt1 {
+				font-size: 3em;
+				width: 30%;
+				text-align: center;
+				background-color: yellow;
+				color: red;
+			}
+			
+			.btn {
+				font-size: 3em;
+				width: 25%;
+				/* height: 30%; */
+				background-color: green;
+				color: white;
+			}
+		</style>
+
+		<script>
+			let step = 0;
+			let count = 0;
+
+
+			setInterval(timer1, 1000);
+
+			function timer1() {
+				switch(step) {
+					case 100:
+						step = 1;
+						break;
+					case 1:
+						document.getElementById('lamp1').checked = true;
+						step = 2;
+						count++;
+						document.getElementById('txt1').value = count;
+						break;
+					case 2:
+						document.getElementById('lamp1').checked = false;
+						step = 1;
+						break;
+					case 200:
+							break;
+					case 300:
+						count=0;
+						document.getElementById('lamp1').checked = false;
+						document.getElementById('txt1').value = count;
+
+						
+					default:
+						break;
+				}
 			}
 
-			#sd1{
-					width:50%;
+			function start() {
+				step = 100;
 			}
+			function pause() {
+				step = 200;
+			}
+			function stop() {
+				step = 300;
+				document.getElementById('lamp1').checked = false;
+			}
+		</script>
+	</head>
 
-
-
-                                 </style>
-				<script>
-						function slide()
-						{
-														document.getElementById('txt1').value=document.getElementById('sd1').value;
-}
-</script>
-        </head>
-        <body>
-                         <div id='div1'>슬라이더 제어</div>
-                         <div id='div2'>
-				<br><br><br>
-				<br><br><br>
-				<input type='text' id='txt1'>
-				<br><br><br>
-				<br><br><br>
-				<input type='range' id='sd1' oninput='slide();'min='0'max='1000000'>
-			</div>
-                         <div id='div3'>한국폴리텍대학<br>메카트로닉스과<br>김휘원</div>
-        </body>
-
+	<body>
+		<div id='div1'>램프 점멸 카운터</div>
+		<div id='div2'>
+			<br><br><br><br>
+			<input type='radio' id='lamp1'><br><br><br><br>
+			<input type='text' id='txt1'><br><br>
+			<!-- onclick 속성명 및 따옴표 정상화 -->
+			<button class='btn' onclick='start();'>시작</button>
+			<button class='btn' onclick='pause();'>멈춤</button>
+			<button class='btn' onclick='stop();'>종료</button>
+		</div>
+		<div id='div3'>메카트로닉스과 김휘원</div>
+	</body>
 </html>
